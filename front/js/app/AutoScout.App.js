@@ -90,6 +90,7 @@ var mainView = new Vue({
     data: {
         authenticated: false,
         loginStatus: null,
+		stateStatus: null,
 		pads: []
     }
 });
