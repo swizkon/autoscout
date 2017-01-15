@@ -8,7 +8,8 @@ jQuery.fn.toObservable = function (eventName, selector) {
 
 var api = (function(){
 
-	var baseUrl = "https://yaq8h11crk.execute-api.eu-west-1.amazonaws.com/prod";
+	// var baseUrl = "https://yaq8h11crk.execute-api.eu-west-1.amazonaws.com/prod";
+	var baseUrl = "../data";
 
 /*
 		var promise = $.ajax({
@@ -46,7 +47,7 @@ var api = (function(){
 
 // Flow and such
 
-var event$ = Rx.Subject.create();
+var event$ = new Rx.Subject();
 
 
 var loginView = new Vue({
@@ -70,7 +71,7 @@ var login$ = Rx.Observable.create(function(observer){
             loginView.loginStatus = 'done';
             loginView.loginRequired = false;
 			
-            observer.onNext(data);
+			observer.onNext(JSON.parse(data));
         });
 
         return false;
@@ -94,24 +95,6 @@ var mainView = new Vue({
 		pads: []
     }
 });
-
-/**
- 
-	var l1 = AutoScout.List("The name");
-
-	l1.addItem("Bregott");
-	l1.addItem("Bregott");
-	l1.addItem("Bregott");
-	l1.addItem("Tvättmedel");
-	var l2 = AutoScout.List("The other one");
-
-	l2.addItem("Bregott");
-	l2.addItem("Tvättmedel");
-
-	console.log(JSON.stringify(l1));
-	
- */
-
 
 
 /*
