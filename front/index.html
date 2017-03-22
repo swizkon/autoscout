@@ -1,38 +1,78 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>RxJS Labzone</title>
+	<title>Auto scout</title>
 	<link rel="stylesheet" href="css/bootstrap-slate.css" />
 	<link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.min.css" />
-
+	<style>
+	/*body{
+		background-color: #000;
+	}*/
+	</style>
 </head>
 <body>
+
 
 <div class="container" id="app-login-view" v-if="loginRequired">
 	<div class="row">
 		<div class="col-md-4 col-md-offset-4">
 			<form>
-				<h1>Login</h1>
+				<h1>Login <small>with test account</small></h1>
 				<fieldset>
-					<input class="form-control input-lg" name="username" placeholder="e-mail" />
+					<input class="form-control input-lg" name="username" placeholder="Enter e-mail that will be hashed" />
 				</fieldset>
 			</form>
 			<div class="alert alert-info" role="alert" v-if="loginStatus==='inprog'">
-				<i class="fa fa-spinner fa-spin fa-fw"></i>
-				Login in progress...
+				<i class="fa fa-spinner fa-spin fa-fw"></i> Login in progress...
 			</div>
 			<div class="alert alert-warning" role="alert" v-if="loginStatus==='failed'">
-				<i class="fa fa-warning fa-fw"></i>
-				Login failed!
+				<i class="fa fa-warning fa-fw"></i> Login failed!
+			</div>
+			{{loginHash}}
+			<img v-bind:src="gravatarSrc" alt="Gravatar" />
+		</div>
+	</div>
+	<hr />
+</div>
+
+<div class="container" id="app-book-view" v-if="books">
+	<div class="row">
+		<div class="col-sm-3">
+			<h1>Books</h1>
+			<ol>
+				<li v-for="book in books">
+					{{ book.title }}
+					{{ book.item_count }}
+					<button :data-bookid="book.id" v-on:click="selectBook">Show</button>
+					<button :data-bookid="book.id" v-on:click="deleteBook">X</button>
+				</li>
+			</ol>
+		</div>
+
+
+
+		<div class="col-sm-9" v-if="selectedBook">
+			<div class="well">
+
+			<h1>Book: {{ selectedBook.title }}</h1>
+			<ol>
+				<li v-for="item in selectedBook.items">
+					{{ item.title }}
+				</li>
+			</ol>
 			</div>
 		</div>
 	</div>
+<hr/>
 </div>
 
 
 
 
-<div class="container" id="app-main-view" v-if="authenticated">
+
+
+
+<div class="container" id="app-main-view">
 	<div class="row">
 		<div class="col-md-3">
 			<h1>Pads</h1>
@@ -64,55 +104,37 @@
 	</div>
 </div>
 
-<hr/> 
+<hr/>
 
 	<div class="container">
 		<div class="row">
 			<div class="col-md-6">
-				<div id="app-list-view">
-					<h2>{{ title }}</h2>
-					
-					<ol>
-						<li v-for="todo in todos">
-						{{ todo.text }}
-						</li>
-					</ol>
-				</div>
-			</div>
-			<div class="col-md-3">
-				<h2>Other</h2>
-				<input id="input" placeholder="Search" />
-			</div>
-		</div>
-	</div>
-
-
-	<div class="container">
-		<div class="row">
-			
-			<div class="col-md-6">
-
 				<a class="btn btn-danger" href="#">
   <i class="fa fa-trash-o fa-lg"></i> Delete</a>
 <a class="btn btn-default btn-sm" href="#">
   <i class="fa fa-cog"></i> Settings</a>
 
-
 			</div>
 		</div>
-	
+
 	</div>
 
 	<noscript>Scripting turned off...</noscript>
-	
+
 	<script src="js/libs/jquery-2.1.4.js"></script>
 	<script src="js/libs/vue.js"></script>
 	<script src="js/libs/rx.all-4.0.6.js"></script>
-	
+
+	<script src="js/libs/cryptojs.core-3.1.2.js"></script>
+	<script src="js/libs/cryptojs.sha256-3.1.2.js"></script>
+	<script src="js/libs/cryptojs.md5-3.1.2.js"></script>
+
 	<script src="js/app/AutoScout.Lists.js"></script>
 	<script src="js/app/AutoScout.App.js"></script>
+	<script src="js/app/AutoScout.Repository.js"></script>
 	<script type="text/javascript">
 
+	// COmment
 
 	function searchWikipedia (term) {
 		var promise = $.ajax({
@@ -139,9 +161,6 @@
         });
 
     });
-
-	
-		
 	</script>
 </body>
 </html>
