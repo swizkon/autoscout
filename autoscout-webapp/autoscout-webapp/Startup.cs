@@ -35,15 +35,9 @@ namespace autoscout_webapp
             {
                 app.UseExceptionHandler("/Error");
             }
-
-            app.UseStaticFiles();
-
-            app.UseMvc(routes =>
-            {
-                routes.MapRoute(
-                    name: "default",
-                    template: "{controller}/{action=Index}/{id?}");
-            });
+            
+            app.UseDefaultFiles()
+                .UseStaticFiles();
         }
     }
 }
