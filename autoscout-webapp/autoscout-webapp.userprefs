@@ -1,9 +1,7 @@
 ﻿<Properties StartupConfiguration="{A84DCD33-05CC-4B98-BBF3-5A4631E3016F}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="autoscout-webapp/bundleconfig.json">
+  <MonoDevelop.Ide.Workbench ActiveDocument="autoscout-webapp/appsettings.Development.json">
     <Files>
-      <File FileName="autoscout-webapp/appsettings.Development.json" Line="11" Column="1" />
-      <File FileName="autoscout-webapp/.bowerrc" Line="1" Column="1" />
-      <File FileName="autoscout-webapp/bundleconfig.json" Line="1" Column="1" />
+      <File FileName="autoscout-webapp/appsettings.Development.json" Line="9" Column="4" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.ItemProperties.autoscout-webapp PreferredExecutionTarget="MonoDevelop.Default" />

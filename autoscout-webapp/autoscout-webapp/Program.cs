@@ -19,6 +19,7 @@ namespace autoscout_webapp
 
         public static IWebHost BuildWebHost(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
+                .UseWebRoot(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "public"))
                 .UseStartup<Startup>()
                 .Build();
     }
