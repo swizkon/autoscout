@@ -6,7 +6,6 @@ import router from './router'
 
 import Toasted from 'vue-toasted';
 
-// import RxJS from 'rxjs'; 
 import { Observable } from 'rxjs/Observable'
 import 'rxjs/add/observable/interval'
 import 'rxjs/add/observable/from'

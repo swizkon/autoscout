@@ -6,14 +6,6 @@
         <h1>{{ msg }}</h1>
       </div>
 
-<vue-markdown>:)
-## Welcome ##
-i am a ~~tast~~ **test**.
-```Some test```
-- FFSFSFSF
-- Othe 
-</vue-markdown>
-
     <app-footer></app-footer>
   </div>
 </template>
@@ -22,7 +14,6 @@ i am a ~~tast~~ **test**.
 
 import Nav from '../components/Nav'
 import Footer from '../components/Footer'
-import VueMarkdown from 'vue-markdown'
 
   export default {
     name: 'splash',
@@ -33,8 +24,7 @@ import VueMarkdown from 'vue-markdown'
     },
     components: {
       'app-nav': Nav,
-      'app-footer': Footer,
-      VueMarkdown
+      'app-footer': Footer
     },
     created () {
     }

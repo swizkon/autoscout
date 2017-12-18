@@ -12,7 +12,6 @@
 
 import Nav from './components/Nav'
 import Footer from './components/Footer'
-import VueMarkdown from 'vue-markdown'
 
   export default {
     name: 'app',
@@ -22,8 +21,7 @@ import VueMarkdown from 'vue-markdown'
     },
     components: {
       'app-nav': Nav,
-      'app-footer': Footer,
-      'vue-markdown': VueMarkdown
+      'app-footer': Footer
     }
   } 
 </script>
