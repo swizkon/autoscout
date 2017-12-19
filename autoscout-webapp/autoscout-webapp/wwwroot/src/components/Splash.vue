@@ -6,6 +6,13 @@
         <h1>{{ msg }}</h1>
       </div>
 
+
+				<v-text-field
+				name="input-1"
+				label="Label Text"
+				id="testing"
+			  ></v-text-field>
+
     <app-footer></app-footer>
   </div>
 </template>
