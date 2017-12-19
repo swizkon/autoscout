@@ -5,20 +5,11 @@ jQuery.fn.toObservable = function (eventName, selector) {
 	return Rx.Observable.fromEvent(this, eventName, selector);
 };
 
-
 var api = (function () {
 
 	var baseUrl = "../data";
 
 	baseUrl = "http://localhost:3004";
-
-	/*
-
-	
-			var promise = $.ajax({
-				url: 'https://yaq8h11crk.execute-api.eu-west-1.amazonaws.com/prod/pads?owner=' + encodeURI(inp.val())
-			}).promise();
-			 */
 
 	return {
 		"pads": {
@@ -52,12 +43,8 @@ var api = (function () {
 // Flow and such
 
 var event$ = new Rx.Subject();
-event$.subscribe(console.log);
 
 var createdPad$ = event$.filter(f => f["PadCreated"]).map(d => d["PadCreated"]);
-
-createdPad$.subscribe(f => console.log(f));
-
 
 event$.onNext({
 	"PadCreated": {
@@ -89,9 +76,7 @@ var loginView = new Vue({
 });
 
 
-// var usernameChange$ = Rx.Observable.fromEvent($('#app-login-view form input'), 'change');
 var usernameChange$ = $('#app-login-view form input').toObservable('keyup');
-//  Rx.Observable.fromEvent($('#app-login-view form input'), 'keyup');
 
 usernameChange$.delay(300)
 			   .map(function(evt){
@@ -120,7 +105,6 @@ var login$ = Rx.Observable.create(function (observer) {
 			loginView.loginRequired = false;
 
 			observer.onNext(data);
-			// observer.onNext(JSON.parse(data));
 		});
 
 		return false;
@@ -140,22 +124,7 @@ var createdPad$ = Rx.Observable.create(function (observer) {
 	$('#app-main-view form').on('submit', function () {
 		var f = this;
 		var inp = $(f).find('input');
-
 		alert('Form');
-		/*event$.onNext({
-			"PadCreated": {
-				"title": inp.val()
-			}
-			});
-			*/
-		// padname, owner
-		/*
-		var doley = Rx.Observable.fromPromise(api.pads.createPad(inp.val()));
-
-        doley.subscribe(function(data){
-			observer.onNext(JSON.parse(data));
-        });
-		*/
 		return false;
 	});
 });
@@ -170,8 +139,6 @@ var mainView = new Vue({
 		pads: []
 	}
 });
-
-
 
 var booksView = new Vue({
 	el: '#app-book-view',
@@ -212,7 +179,6 @@ var removedBook$ = new Rx.Subject();
 var book$ = Rx.Observable.merge(addedBook$, removedBook$);
 
 tick$.subscribe(function (tick) {
-	// console.log(tick);
 	var id = tick.toString();
 	var book = { "id": id, "title": "Book " + id };
 	addedBook$.onNext(book);
@@ -223,50 +189,8 @@ book$.subscribe(function (book) {
 	booksView.books.push(book);
 });
 
-
 var tick2$ = Rx.Observable.interval(2000)
 	.map(function (t) { return new Date().getTime() });
 
-
 var clickStream = Rx.Observable.fromEvent($(document), 'bookSelected');
 clickStream.subscribe(console.log);
-/*
-
-
-	var button, clickStream;
-
-		button = document.querySelector('button');
-		// console.log(button);
-		// alert(button);
-		clickStream = Rx.Observable.fromEvent(button, 'click');
-
-
-	// HERE
-	// The 4 lines of code that make the multi-click logic
-	var multiClickStream = clickStream
-	    .buffer(function() { return clickStream.throttle(250); })
-	    .map(function(list) { return list.length; })
-	    .filter(function(x) { return x >= 2; });
-
-	// Same as above, but detects single clicks
-	var singleClickStream = clickStream
-	    .buffer(function() { return clickStream.throttle(300); })
-	    .map(function(list) { return list.length; })
-	    .filter(function(x) { return x === 1; });
-
-	// Listen to both streams and render the text label accordingly
-	singleClickStream.subscribe(function (event) {
-	    document.querySelector('h2.singles').textContent = 'SIngle click';
-	});
-
-	multiClickStream.subscribe(function (numclicks) {
-	    document.querySelector('h2.multies').textContent = ''+numclicks+'x click';
-	});
-	Rx.Observable.merge(singleClickStream, multiClickStream)
-	    .throttle(1000)
-	    .subscribe(function (suggestion) {
-	        document.querySelector('h2').textContent = '';
-	    });
-
-
- */
