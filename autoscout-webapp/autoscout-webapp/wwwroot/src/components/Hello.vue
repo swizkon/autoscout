@@ -14,12 +14,17 @@
 </template>
 
 <script>
+
+  import { HubConnection } from "@aspnet/signalr-client"
+
+  var connection;
+
   export default {
     name: 'hello',
     data() { 
       return {
         label: `Enter item`,
-        entityId: '12345',
+        entityId: '',
         items: null
       }
     },
@@ -34,14 +39,31 @@
             _this.items = []
           });
           */
+
+          connection = new HubConnection('/list');
+
+          connection.on('send', data => {
+              console.log("send: " + data);
+
+              this.$toasted.success('<b>SEND </b>  ' + data); //.goAway(2000);
+          });
+
+          connection.on('itemAdded', (title, list) => {
+              this.$toasted.info(list + ': ' + title).goAway(2000)
+              this.items.push(title)
+
+          });
+
+          connection.start()
+              .then(() => {
+                connection.invoke('send', 'Hello from HubTest.vue');
+              });
     },
     methods: {
         onSubmit: function (event) {
-          this.$toasted.info('Add item ' + this.entityId)
-          
-          // this.$router.push({ name: 'AccountHistory', params: { id: this.entityId}})
-        this.items.push(this.entityId)
-
+          var itemTitle = this.entityId;
+          // this.$toasted.info('Added item ' + itemTitle)
+          connection.invoke('itemAdded', itemTitle, 'defaultList');
           this.entityId = "";
         }
       }

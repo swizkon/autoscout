@@ -6,6 +6,8 @@ import router from './router'
 
 import Toasted from 'vue-toasted';
 
+import { HubConnection } from "@aspnet/signalr-client"
+
 import { Observable } from 'rxjs/Observable'
 import 'rxjs/add/observable/interval'
 import 'rxjs/add/observable/from'

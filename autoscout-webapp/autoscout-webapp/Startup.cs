@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace autoscout_webapp
+namespace Autoscout
 {
     public class Startup
     {
@@ -22,6 +22,7 @@ namespace autoscout_webapp
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+            services.AddSignalR();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -37,7 +38,11 @@ namespace autoscout_webapp
             }
             
             app.UseDefaultFiles()
-                .UseStaticFiles();
+                .UseStaticFiles()
+                .UseSignalR(routes =>
+                {
+                    routes.MapHub<Hubs.ListMessageHub>("list");
+                });
         }
     }
 }
