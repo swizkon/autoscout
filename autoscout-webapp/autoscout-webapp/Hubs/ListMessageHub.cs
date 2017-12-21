@@ -16,6 +16,11 @@ namespace Autoscout.Hubs
             return Clients.All.InvokeAsync("ItemAdded", title, list);
         }
 
+        public Task AddItem(string title, string list)
+        {
+            return Clients.All.InvokeAsync("ItemAccepted", title, list);
+        }
+
         public void JoinList(string listId)
         {
             this.Groups.AddAsync(this.Context.ConnectionId, listId);

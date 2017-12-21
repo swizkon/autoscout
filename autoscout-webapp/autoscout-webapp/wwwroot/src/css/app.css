@@ -1,4 +1,6 @@
 ﻿/* This file is for your main application css. */
+
+
 body {
     padding-top: 50px;
     padding-bottom: 20px;
@@ -7,13 +9,11 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 
+/* 
 span.logo{
     font-size:3em;
 }
 
-/*
-My stuff
-*/
 body, div.jumbotron
 {
     background-color: #333;
@@ -38,22 +38,10 @@ h1 small {
     font-weight: 100;
 }
 
-/*
-img.circuit{
-    width:600px;
-    height:400px;
-}
-*/
-
-/*
-canvas {
-    border:solid 1px rgb(109, 105, 105);
-}
-*/
-
 @media screen and (max-width: 480px) {
 body, div.jumbotron
 {
     background-color: #fff;
 }
 }
+*/

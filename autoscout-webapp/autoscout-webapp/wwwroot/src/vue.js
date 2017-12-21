@@ -1,4 +1,5 @@
 import Vue from 'vue'
+import Vuetify from 'vuetify'
 import App from './App'
 import AccountHistory from './components/AccountHistory'
 
@@ -18,8 +19,9 @@ import 'rxjs/add/operator/map'
 
 import Footer from './components/Footer'
 
-import "vueify/lib/insert-css" // required for .vue file <style> tags
+// import "vueify/lib/insert-css" // required for .vue file <style> tags
 
+Vue.use(Vuetify)
 Vue.config.productionTip = false
 
 Vue.use(Toasted, {

@@ -44,15 +44,21 @@
 
           connection.on('send', data => {
               console.log("send: " + data);
-
+ 
               this.$toasted.success('<b>SEND </b>  ' + data); //.goAway(2000);
           });
 
           connection.on('itemAdded', (title, list) => {
               this.$toasted.info(list + ': ' + title).goAway(2000)
               this.items.push(title)
-
           });
+
+          connection.on('itemAccepted', (title, list) => {
+              this.$toasted.info('Item accepted: ' + list + ': ' + title).goAway(2000)
+          });
+
+
+          // ItemAccepted
 
           connection.start()
               .then(() => {

@@ -1,4 +1,4 @@
-<template lang="pug">
+<!-- template lang="pug">
     nav.navbar.navbar-inverse.navbar-fixed-top
         .container
             .navbar-header
@@ -12,7 +12,16 @@
                 ul.nav.navbar-nav
                     li
                         a(href='/accounts.html') Entity history
+</template -->
+
+<template>
+
+<v-toolbar dark fixed app>
+      <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
+      <v-toolbar-title>Autoscout</v-toolbar-title>
+    </v-toolbar>
 </template>
+
 
 <script>
   module.exports = {
