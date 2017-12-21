@@ -255,17 +255,6 @@ typings/
 **/*.Server/ModelManifest.xml
 _Pvt_Extensions
 
-# Paket dependency manager
-.paket/paket.exe
-paket-files/
-
-# CodeRush
-.cr/
-
-# Cake - Uncomment if you are using it
-# tools/**
-# !tools/packages.config
-
 **/wwwroot/public/**
 account-history/wwwroot/public/js/app.js
 
@@ -275,3 +264,4 @@ gist
 
 **/*/appsettings.Development.json
 autoscout-webapp/autoscout-webapp/appsettings.Development.json
+autoscout-webapp/autoscout-webapp/appsettings.Development.1.json

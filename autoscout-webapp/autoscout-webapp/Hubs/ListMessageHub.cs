@@ -18,6 +18,7 @@ namespace Autoscout.Hubs
 
         public Task AddItem(string title, string list)
         {
+            // Add item to the queue for processing...
             return Clients.All.InvokeAsync("ItemAccepted", title, list);
         }
 

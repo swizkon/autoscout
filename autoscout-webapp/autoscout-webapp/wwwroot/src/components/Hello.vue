@@ -56,10 +56,7 @@
           connection.on('itemAccepted', (title, list) => {
               this.$toasted.info('Item accepted: ' + list + ': ' + title).goAway(2000)
           });
-
-
-          // ItemAccepted
-
+          
           connection.start()
               .then(() => {
                 connection.invoke('send', 'Hello from HubTest.vue');
@@ -69,7 +66,8 @@
         onSubmit: function (event) {
           var itemTitle = this.entityId;
           // this.$toasted.info('Added item ' + itemTitle)
-          connection.invoke('itemAdded', itemTitle, 'defaultList');
+          // connection.invoke('itemAdded', itemTitle, 'defaultList');
+          connection.invoke('addItem', itemTitle, 'defaultList');
           this.entityId = "";
         }
       }
