@@ -3,6 +3,7 @@ namespace Autoscout.Hubs
     using System;
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.SignalR;
+    using Microsoft.Extensions.Configuration;
 
     public class ListMessageHub : Hub
     {
@@ -15,10 +16,9 @@ namespace Autoscout.Hubs
         {
             return Clients.All.InvokeAsync("ItemAdded", title, list);
         }
-
-        public Task AddItem(string title, string list)
+        
+        public Task ItemAccepted(string title, string list)
         {
-            // Add item to the queue for processing...
             return Clients.All.InvokeAsync("ItemAccepted", title, list);
         }
 
