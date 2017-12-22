@@ -48,6 +48,12 @@ namespace Autoscout
             
             app.UseDefaultFiles()
                 .UseStaticFiles()
+                .UseMvc(routes =>
+                {
+                    routes.MapRoute(
+                        name: "default",
+                        template: "{controller}/{action=Index}/{id?}");
+                })
                 .UseSignalR(routes =>
                 {
                     routes.MapHub<Hubs.ListMessageHub>("list");

@@ -13,7 +13,7 @@ using Microsoft.WindowsAzure.Storage.Table;
 
 namespace Autoscout.Controllers
 {
-    [Route("api/[controller]/{listid}")]
+    [Route("api/[controller]")]
     public class ItemsController : Controller
     {
         private readonly IHubContext<ListMessageHub> _hubContext;
@@ -37,19 +37,10 @@ namespace Autoscout.Controllers
             return new List<Item>();
         }
 
-        /*
-        [HttpGet("{id}")]
-        public RaceState Get(string id)
+        [HttpPost("{listid}")]
+        public void Post(string listid, [FromQuery]string title)
         {
-            var race = states.GetValueOrDefault(RaceId());
-            return race?.FirstOrDefault(x => x.RiderId == id);
-        }
-        */
-
-        [HttpPost("{id}")]
-        public void Post(string id, [FromQuery]string title)
-        {
-            _hubContext.Clients.All.InvokeAsync("ItemAccepted", title, ListId());
+            _hubContext.Clients.All.InvokeAsync("ItemAccepted", title, listid);
         }
 
         /*
@@ -64,11 +55,6 @@ namespace Autoscout.Controllers
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
-        }
-
-        private string ListId()
-        {
-            return (string)this.RouteData.Values.GetValueOrDefault("listid");
         }
     }
 }
