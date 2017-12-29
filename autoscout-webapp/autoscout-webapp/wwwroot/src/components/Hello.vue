@@ -49,7 +49,7 @@
           });
 
           connection.on('itemAdded', (title, list) => {
-              this.$toasted.info(list + ': ' + title).goAway(2000)
+              this.$toasted.info('Added ' + title  + ' to ' + list).goAway(2000)
               this.items.push(title)
           });
 
@@ -67,7 +67,7 @@
           var itemTitle = this.entityId;
           // this.$toasted.info('Added item ' + itemTitle)
           // connection.invoke('itemAdded', itemTitle, 'defaultList');
-          connection.invoke('addItem', itemTitle, 'defaultList');
+          connection.invoke('itemAccepted', itemTitle, 'defaultList');
           this.entityId = "";
         }
       }

@@ -37,10 +37,11 @@ namespace Autoscout.Controllers
             return new List<Item>();
         }
 
-        [HttpPost("{listid}")]
-        public void Post(string listid, [FromQuery]string title)
+        [HttpPost]
+        public void Post([FromQuery]string listid, [FromQuery]string title)
         {
             _hubContext.Clients.All.InvokeAsync("ItemAccepted", title, listid);
+            _hubContext.Clients.All.InvokeAsync("ItemAdded", title, listid);
         }
 
         /*
@@ -55,6 +56,7 @@ namespace Autoscout.Controllers
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+            
         }
     }
 }
