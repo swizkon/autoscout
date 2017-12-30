@@ -11,4 +11,6 @@ BrowserUtil.getQueryParameter = function(name, url) {
     return decodeURIComponent(results[2].replace(/\+/g, " "));
 }
 
+JSON.stringify({})
+
 export default BrowserUtil;

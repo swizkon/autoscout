@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.SignalR;
 using Microsoft.AspNetCore.SignalR.Features;
 using Autoscout.Hubs;
 using Autoscout.Domain.Models;
+using Autoscout.Domain.Commands;
 using System.Collections.Concurrent;
 using Microsoft.Extensions.Configuration;
 using Microsoft.WindowsAzure.Storage;
@@ -38,20 +39,13 @@ namespace Autoscout.Controllers
         }
 
         [HttpPost]
-        public void Post([FromQuery]string listid, [FromQuery]string title)
+        public AddItemCommand Post([FromBody] AddItemCommand data)
         {
-            _hubContext.Clients.All.InvokeAsync("ItemAccepted", title, listid);
-            _hubContext.Clients.All.InvokeAsync("ItemAdded", title, listid);
-        }
+            _hubContext.Clients.All.InvokeAsync("ItemAccepted", data.Title, data.List);
+            _hubContext.Clients.All.InvokeAsync("ItemAdded", data.Title, data.List);
 
-        /*
-        [HttpPut("{id}")]
-        public void Put(string id, [FromQuery]string key)
-        {
-            var state = new RaceState { RiderId = id, RiderKey = key };
-            Update(id, key, state);
+            return data;
         }
-        */
 
         [HttpDelete("{id}")]
         public void Delete(int id)

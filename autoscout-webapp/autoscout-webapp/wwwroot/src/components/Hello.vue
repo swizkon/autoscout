@@ -65,9 +65,25 @@
     methods: {
         onSubmit: function (event) {
           var itemTitle = this.entityId;
-          // this.$toasted.info('Added item ' + itemTitle)
-          // connection.invoke('itemAdded', itemTitle, 'defaultList');
-          connection.invoke('itemAccepted', itemTitle, 'defaultList');
+          var data = {
+              "list": "defaultList",
+              "title": itemTitle,
+              "callBack": "",
+              "commandId": new Date().toString() + Math.random()
+          };
+          console.log(data);
+          
+          fetch('/api/items', {
+            method: 'post',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: data
+          }).then(function(response) {
+            return response.json();
+          }).then(function(data) {
+            console.log('Created Gist:', data.html_url);
+          });
           this.entityId = "";
         }
       }

@@ -1,7 +1,9 @@
 ﻿<Properties StartupConfiguration="{A84DCD33-05CC-4B98-BBF3-5A4631E3016F}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="autoscout-webapp/appsettings.Development.json">
+  <MonoDevelop.Ide.Workbench ActiveDocument="autoscout-webapp/Controlls/ItemsController.cs">
     <Files>
       <File FileName="autoscout-webapp/appsettings.Development.json" Line="9" Column="4" />
+      <File FileName="autoscout-webapp/Domain/Commands/AddItemCommand.cs" Line="13" Column="2" />
+      <File FileName="autoscout-webapp/Controlls/ItemsController.cs" Line="52" Column="10" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.ItemProperties.autoscout-webapp PreferredExecutionTarget="MonoDevelop.Default" />
