@@ -41,8 +41,13 @@ namespace Autoscout.Controllers
         [HttpPost]
         public AddItemCommand Post([FromBody] AddItemCommand data)
         {
+            // Add to queue...
+            // 
+
             _hubContext.Clients.All.InvokeAsync("ItemAccepted", data.Title, data.List);
-            _hubContext.Clients.All.InvokeAsync("ItemAdded", data.Title, data.List);
+            
+            // _hubContext.Clients.All.InvokeAsync("ItemAdded", data.Title, data.List);
+
 
             return data;
         }

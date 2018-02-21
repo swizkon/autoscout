@@ -14,7 +14,6 @@
 </template>
 
 <script>
-
   import { HubConnection } from "@aspnet/signalr-client"
 
   var connection;
@@ -31,21 +30,11 @@
     created () {
         var _this = this;
             _this.items = [];
-          /*
-          this.$toasted.info('Loading pre-defined template')
-          fetch('/api/accountEvent/mocks').then(function(response) {
-            return response.json();
-          }).then(function(jsonData) {
-            _this.items = []
-          });
-          */
 
           connection = new HubConnection('/list');
 
           connection.on('send', data => {
-              console.log("send: " + data);
- 
-              this.$toasted.success('<b>SEND </b>  ' + data); //.goAway(2000);
+              this.$toasted.success('<b>SEND </b>  ' + data); //.goAway(2000)
           });
 
           connection.on('itemAdded', (title, list) => {
@@ -63,6 +52,9 @@
               });
     },
     methods: {
+      toJSON: function(data) {
+        return window['JSON'].stringify(data);
+      },
         onSubmit: function (event) {
           var itemTitle = this.entityId;
           var data = {
@@ -71,18 +63,17 @@
               "callBack": "",
               "commandId": new Date().toString() + Math.random()
           };
-          console.log(data);
           
           fetch('/api/items', {
             method: 'post',
             headers: {
               'Content-Type': 'application/json'
             },
-            body: data
+            body: this.toJSON(data)
           }).then(function(response) {
             return response.json();
           }).then(function(data) {
-            console.log('Created Gist:', data.html_url);
+            console.log('Created Gist:', data);
           });
           this.entityId = "";
         }
